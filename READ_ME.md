@@ -75,13 +75,13 @@ python bot.py
 Si tout fonctionne correctement, votre bot devrait maintenant être en ligne sur Discord et prêt à jouer de la musique à partir de YouTube.
 
 ### Commandes du bot :
-- `!play` ou `!p <TITRE musique>` ou `<URL YouTube>` : Permet de jouer une vidéo YouTube.
+- `!play <TITRE/URL youtube>` ou `!p <TITRE/URL youtube>` : Permet de jouer une vidéo YouTube (musique).
 - `!queue` ou `!q` : Permet de voir le contenu de la file d'attente des vidéos / musiques.
 - `!join` ou `!j` : Permet de faire rejoindre le bot dans le salon vocal auquel vous êtes actuellement connecté.
 - `!leave` : Permet de faire quitter le bot de Discord.
 - `!stop` : Arrêter la musique.
 - `!pause` : Mettre la musique actuelle sur pause.
 - `!resume` : Relancer la musique qui était en pause.
-- `!playQueue` : Jouer un son de la queue avec son.
+- `!playQueue <numéro dans la queue>` : Jouer un son de la queue avec son.
 
 Ces commandes permettent de gérer facilement la lecture musicale sur votre serveur Discord. Assurez-vous que le bot a les bonnes permissions pour rejoindre les salons vocaux et gérer l'audio.
