@@ -45,12 +45,14 @@ def isValidUrl(url):
     match = youtube_regex.match(url)
     if not match:
         return False  # L'URL ne correspond pas à une vidéo YouTube
+    return True
     
 def isPlaylist(url):
     # Vérifier si l'URL contient un paramètre "list=" (playlist)
     parsedUrl = urlparse(url)
     queryParams = parse_qs(parsedUrl.query)
     
+    print(queryParams)
     return "list" in queryParams  # Retourne False si une playlist est détectée
 
 def searchOnYoutube(query):
@@ -114,8 +116,7 @@ async def playNextMusic(ctx):
 # Les commandes du bot : 
 
 # Rejoindre un canal vocal
-@bot.command(name='j')
-@bot.command(name='join')
+@bot.command(name='j', aliases=['join'])
 async def join(ctx):
     if ctx.author.voice:
         channel = ctx.author.voice.channel
@@ -135,19 +136,19 @@ async def leave(ctx):
         await ctx.send(NOT_IN_CHANNEL_EROR_MESSAGE)
 
 # Permet de jouer une musique ou le mettre 
-@bot.command(name='p')
-@bot.command(name='play')
+@bot.command(name='p', aliases=['play'])
 async def play(ctx, *, param: str = None):
     if param :
         # Faire rejoindre le bot au canal vocal si il n'est pas connecté à un channel
         if ctx.voice_client is None:
             await ctx.invoke(bot.get_command("join"))
-                    
+        
         if isInTheVocalChannel(ctx):
+            processingMessage = await ctx.send("⌛ Traitement en cours.. ")
             url = None
             if (isValidUrl(param)): 
                 url = param
-                if (isPlaylist()):
+                if (isPlaylist(url)):
                     await ctx.send("❌ Les playlist ne sont pas autorisés.")
                     return
             else:
@@ -174,6 +175,7 @@ async def play(ctx, *, param: str = None):
                         musicQueue.append({'url': audioUrl, 'name': audioName})  # Ajouté à la queue
 
                     # Si c'est la seule chanson, la jouer immédiatement
+                    await processingMessage.delete()
                     if len(musicQueue) == 1 and not ctx.voice_client.is_playing():
                         await playNextMusic(ctx)
                     else:
@@ -189,8 +191,7 @@ async def play(ctx, *, param: str = None):
             await ctx.send(NOT_IN_CHANNEL_EROR_MESSAGE)
 
 # Commande next pour passer à la chanson suivante
-@bot.command(name='n')
-@bot.command(name='next')
+@bot.command(name='n', aliases=['next'])
 async def next(ctx):
     if isInTheVocalChannel(ctx):
         ctx.voice_client.stop()
@@ -201,8 +202,7 @@ async def next(ctx):
     else:
         await ctx.send(NOT_IN_CHANNEL_EROR_MESSAGE)
 
-@bot.command(name='q')
-@bot.command(name='queue')
+@bot.command(name='q', aliases=['queue'])
 async def queue(ctx):
     if isInTheVocalChannel(ctx):
         if len(musicQueue) > 0:
@@ -244,6 +244,32 @@ async def resume(ctx):
             await ctx.send("▶️ Reprise de la musique.")
         else:
             await ctx.send("❌ Aucune musique en pause.")
+    else:
+        await ctx.send(NOT_IN_CHANNEL_EROR_MESSAGE)
+        
+@bot.command()
+async def playQueue(ctx, idx: str):
+    if isInTheVocalChannel(ctx):
+        try:
+            index = int(idx)
+            index -= 1
+        except ValueError:
+            await ctx.send(f"❌ L'indice {index} est invalide. La valeur doit être comprise entre 1 et {len(musicQueue)}.")
+            return
+        
+        if index < 0 or index >= len(musicQueue):
+            await ctx.send(f"❌ L'indice {index} est invalide. La valeur doit être comprise entre 1 et {len(musicQueue)}.")
+            return
+        
+        # Récupérer la musique en question
+        element = musicQueue[index]
+
+        # Retirer la musique et l'ajouter en première position de la queue
+        musicQueue.pop(index)
+        musicQueue.insert(0, element)
+        
+        await ctx.invoke(bot.get_command("next"))
+        
     else:
         await ctx.send(NOT_IN_CHANNEL_EROR_MESSAGE)
 
