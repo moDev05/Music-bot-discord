@@ -14,7 +14,7 @@ The bot uses the YouTube Data API to search for music videos and the yt-dlp libr
 
 ## Setup and Deployment
 
-The source files contain two README files: one in **French** and one in **English**, detailing how to deploy the bot from A to Z.
+The source files contain two SETUP files: one in **French** and one in **English**, detailing how to deploy the bot from A to Z.
 
 1. The **French SETUP** explains everything in French, covering bot installation, setup, and configuration steps.
 2. The **English SETUP** provides the same detailed instructions in English.
