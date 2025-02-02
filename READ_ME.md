@@ -72,10 +72,6 @@ Exécutez votre bot en utilisant la commande suivante dans le répertoire conten
 ```bash
 python bot.py
 ```
-
-## Étape 6 : Exécuter votre Bot
-Exécutez votre bot en utilisant la commande suivante dans le répertoire contenant votre fichier bot.py :
-python bot.py
 Si tout fonctionne correctement, votre bot devrait maintenant être en ligne sur Discord et prêt à jouer de la musique à partir de YouTube.
 
 ### Commandes du bot :
