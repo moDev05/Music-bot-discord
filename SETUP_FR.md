@@ -68,7 +68,7 @@ API_GOOGLE_KEY=VOTRE_CLE_API_GOOGLE
     ```
 
 ## Étape 6 : Exécuter votre Bot
-Exécutez votre bot en utilisant la commande suivante dans le répertoire contenant votre fichier `bot.py` :
+Exécutez votre bot en utilisant la commande suivante dans le répertoire contenant votre fichier `botFR.py` :
 ```bash
 python bot.py
 ```

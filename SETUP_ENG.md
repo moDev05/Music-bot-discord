@@ -68,7 +68,7 @@ API_GOOGLE_KEY=YOUR_GOOGLE_API_KEY
     ```
 
 ## Step 6: Run Your Bot
-Run your bot using the following command in the directory containing your `bot.py` file:
+Run your bot using the following command in the directory containing your `botENG.py` file:
 ```bash
 python bot.py
 ```
