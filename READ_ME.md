@@ -76,12 +76,12 @@ Si tout fonctionne correctement, votre bot devrait maintenant être en ligne sur
 
 ### Commandes du bot :
 - `!play <TITRE/URL youtube>` ou `!p <TITRE/URL youtube>` : Permet de jouer une vidéo YouTube (musique).
-- `!queue` ou `!q` : Permet de voir le contenu de la file d'attente des vidéos / musiques.
+- `!queue` ou `!q` : Permet de voir le contenu de la file d'attente des musiques.
 - `!join` ou `!j` : Permet de faire rejoindre le bot dans le salon vocal auquel vous êtes actuellement connecté.
 - `!leave` : Permet de faire quitter le bot de Discord.
-- `!stop` : Arrêter la musique.
+- `!stop` : Arrêter la musique et vider le contenu de la queue.
 - `!pause` : Mettre la musique actuelle sur pause.
 - `!resume` : Relancer la musique qui était en pause.
-- `!playQueue <numéro dans la queue>` : Jouer un son de la queue avec son.
+- `!playQueue <numéro dans la queue>` : Jouer un son de la queue avec son indice dans la file d'attente.
 
 Ces commandes permettent de gérer facilement la lecture musicale sur votre serveur Discord. Assurez-vous que le bot a les bonnes permissions pour rejoindre les salons vocaux et gérer l'audio.
